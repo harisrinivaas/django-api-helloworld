@@ -1,0 +1,8 @@
+{
+  "name": "django api",
+  "description": "django api",
+  "image": "heroku/python",
+  "repository": "https://github.com/heroku/python-getting-started",
+  "keywords": ["python", "django" ],
+  "addons": [ "heroku-postgresql" ]
+}
