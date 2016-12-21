@@ -25,7 +25,7 @@ SECRET_KEY = '_6_qs=7y+sln*in=%%r=r26@7a_r*6zt39ed(6+o0dipa8_d4v'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['https://django-api-helloworld2.herokuapp.com/', 'django-api-helloworld2.herokuapp.com']
 
 
 # Application definition
