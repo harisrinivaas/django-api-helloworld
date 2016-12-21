@@ -6,6 +6,7 @@ from rest_framework.response import Response
 from rest_framework import status
 
 
+# Read. All
 @api_view(['GET'])
 def get_articles(request):
     if request.method == 'GET':
@@ -14,6 +15,7 @@ def get_articles(request):
         return Response(serializer.data)
 
 
+# Read. One item
 @api_view(['GET'])
 def get_article(request, pk):
     try:
@@ -26,6 +28,7 @@ def get_article(request, pk):
         return Response(serializer.data)
 
 
+# Create
 @api_view(['POST'])
 def save_article(request):
     print("posting#")
@@ -36,6 +39,7 @@ def save_article(request):
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
+# Delete
 @api_view(['DELETE'])
 def delete_article(request, pk):
     try:
@@ -45,3 +49,19 @@ def delete_article(request, pk):
 
     article.delete()
     return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+# Update
+# However requests for missing parameters
+@api_view(['PUT'])
+def update_article(request, pk):
+    try:
+        article = Article.objects.get(pk=pk)
+    except Article.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    serializer = ArticleSerializer(article, data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
